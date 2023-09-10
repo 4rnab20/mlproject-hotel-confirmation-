@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from sklearn.compose import make_column_transformer
 from sklearn.impute import SimpleImputer
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import OneHotEncoder,StandardScaler
 
 from src.exception import CustomException
@@ -35,9 +35,9 @@ class DataTransformation:
             logging.info(f"Binary columns: {binary_features}")
             logging.info(f"Dropped columns: {drop_features}")
             
-            numeric_transformer = StandardScaler()
-            categorical_transformer = OneHotEncoder(handle_unknown="ignore")
-            binary_transformer = OneHotEncoder(drop="if_binary", dtype=int)
+            numeric_transformer = make_pipeline(StandardScaler(), SimpleImputer(strategy = "most_frequent"))
+            categorical_transformer = make_pipeline(OneHotEncoder(handle_unknown="ignore"), SimpleImputer(strategy = "most_frequent"))
+            binary_transformer = make_pipeline(OneHotEncoder(drop="if_binary", dtype=int), SimpleImputer(strategy = "most_frequent"))
 
             preprocessor = make_column_transformer (
                 (numeric_transformer, numeric_features),

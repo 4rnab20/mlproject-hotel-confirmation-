@@ -42,7 +42,7 @@ class ModelTrainer:
             }
             params = {
                 "Random Forest" : {                 
-                    'n_estimators': [50, 100, 200, 250],
+                    'n_estimators': [50, 100, 200, 250],                            
                     'max_depth': [4, 8, 12],
                 },
                 "Gradient Boosting":{
@@ -75,8 +75,7 @@ class ModelTrainer:
                 list(model_report.values()).index(best_model_score)
             ]
             best_model = models[best_model_name]
-
-            # if best_model_score < 0.6:
+            # if best_model_score < 0.5:
             #     raise CustomException("No best model found")
             # logging.info("Best found model on both training and testing dataset")
 
@@ -88,7 +87,9 @@ class ModelTrainer:
             predicted = best_model.predict(X_test)
 
             accuracy = accuracy_score(y_test, predicted)
-            return accuracy, best_model_name
+            return accuracy, best_model
+        
+    
         
         except Exception as e:
             raise CustomException(e,sys)

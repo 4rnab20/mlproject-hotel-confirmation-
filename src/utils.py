@@ -26,14 +26,12 @@ def save_object(file_path, obj):
 def evaluate_models(X_train, y_train, X_test, y_test, models, param):
     try:
         report = {}
-
         for i in range(len(list(models))):
             model = list(models.values())[i]
             para = param[list(models.keys())[i]]
-
-            rs = RandomizedSearchCV(model, para, cv = 5, n_iter = 5)
+            rs = RandomizedSearchCV(model, para, cv = 5, n_iter= 2, random_state=111)
             rs.fit(X_train,y_train)
-
+            
             model.set_params(**rs.best_params_)
             model.fit(X_train,y_train)
 
@@ -44,7 +42,7 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, param):
             test_model_score = accuracy_score(y_test, y_test_pred)
 
             report[list(models.keys())[i]] = test_model_score
-
+        
         return report
 
     except Exception as e:

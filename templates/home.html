@@ -1,0 +1,101 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Hotel booking prediction</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h2>
+            Find whether the booking is likely to get cancelled or not:
+        </h2>
+        <div class="mb-3">
+            <label class="form-label">Number of adults</label>
+            <input class="form-control" type = "number" name = "no_of_adults"
+                placeholder="Enter the value" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Is parking space required? </label>
+            <select class="form-control" name = "required_car_parking_space"
+                placeholder="Enter whether you require it>
+                <option class="placeholder" selected enabled value="">Select option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Market segment type? </label>
+            <select class="form-control" name = "market_segment_type"
+                placeholder="Enter type>
+                <option class="placeholder" selected enabled value="">Select option</option>
+                <option value=1>
+                    Online
+                </option>
+                <option value=0>
+                    Offline
+                </option>
+                <option value=2>
+                    Corporate
+                </option>
+                <option value=4>
+                    Complementary
+                </option>
+                <option value=3>
+                    Aviation
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Repeated guest? </label>
+            <select class="form-control" name = "repeated_guest"
+                placeholder="Enter your answer>
+                <option class="placeholder" selected enabled value="">Select option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Number of weekend nights</label>
+            <input class="form-control" type = "number" name = "no_of_weekend_nights"
+                placeholder="Enter the value" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Number of week nights</label>
+            <input class="form-control" type = "number" name = "no_of_week_nights"
+                placeholder="Enter the value" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Time since booking</label>
+            <input class="form-control" type = "number" step="any" name = "lead_time"
+                placeholder="Enter the value" min='0' />
+        </div>  
+        <div class="mb-3">
+            <label class="form-label">Number of special requests</label>
+            <input class="form-control" type = "number" name = "no_of_special_requests"
+                placeholder="Enter the value" min = '0' max='100' />
+        </div>  
+        <div class="mb-3">
+            <label class="form-label">Average price per room</label>
+            <input class="form-control" type="number" step="any" name="avg_price_per_room"
+                placeholder="Enter your value" min='0' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Month of booking</label>
+            <input class="form-control" type="number" name="arrival_month"
+                placeholder="Enter the month (in integer)" min='1' max='12' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict whether the booking will be cancelled or not" required />
+        </div>
+    </form>
+    <h2>
+       The prediction is {{results}}
+    </h2>
+   <body>
+</html>

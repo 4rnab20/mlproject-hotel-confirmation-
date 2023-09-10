@@ -49,13 +49,13 @@ class CustomData:
         self.arrival_month = arrival_month
         self.market_segment_type = market_segment_type
         self.repeated_guest = repeated_guest
-        self.no_of_previous_cancellations = None
-        self.no_of_previous_bookings_not_canceled = None
-        self.type_of_meal_plan = None
-        self.room_type_reserved = None
-        self.arrival_date = None
-        self.arrival_year = None
-        self.no_of_children = None
+        self.no_of_previous_cancellations = 0
+        self.no_of_previous_bookings_not_canceled = 0
+        self.type_of_meal_plan = 0
+        self.room_type_reserved = 0
+        self.arrival_date = 20
+        self.arrival_year = 2018
+        self.no_of_children = 0
 
 
     def get_data_as_data_frame(self):
